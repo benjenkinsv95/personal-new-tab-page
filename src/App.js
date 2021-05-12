@@ -9,6 +9,7 @@ import Header from './components/Header/Header'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
+import NewTab from './components/NewTab/NewTab'
 
 class App extends Component {
   constructor (props) {
@@ -55,12 +56,12 @@ class App extends Component {
             deleteAlert={this.deleteAlert}
           />
         ))}
-        <main className="container">
+        <main className="container-fluid">
           <AuthenticatedRoute user={user} exact path='/' render={() => (
-            <h2>Hi</h2>
+            <NewTab/>
           )} />
           <Route path='/sign-in' render={() => (
-            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />

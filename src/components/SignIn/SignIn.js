@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 
 // import { signIn } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
@@ -47,6 +47,10 @@ class SignIn extends Component {
 
   render () {
     const { email, password } = this.state
+
+    if (this.props.user) {
+      return <Redirect to='/' />
+    }
 
     return (
       <div className="row">
