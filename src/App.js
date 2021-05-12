@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid'
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/Header/Header'
-import SignUp from './components/SignUp/SignUp'
+// import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
@@ -14,14 +14,17 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      user: null,
+      user: JSON.parse(localStorage.getItem('user')) || null,
       msgAlerts: []
     }
   }
 
-  setUser = user => this.setState({ user })
+  setUser = user => {
+    this.setState({ user })
+    localStorage.setItem('user', JSON.stringify(user))
+  }
 
-  clearUser = () => this.setState({ user: null })
+  clearUser = () => this.setUser(null)
 
   deleteAlert = (id) => {
     this.setState((state) => {
@@ -53,8 +56,8 @@ class App extends Component {
           />
         ))}
         <main className="container">
-          <Route path='/sign-up' render={() => (
-            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
+          <AuthenticatedRoute user={user} exact path='/' render={() => (
+            <h2>Hi</h2>
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { signIn } from '../../api/auth'
+// import { signIn } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
@@ -25,23 +25,24 @@ class SignIn extends Component {
     event.preventDefault()
 
     const { msgAlert, history, setUser } = this.props
+    const { email, password } = this.state
 
-    signIn(this.state)
-      .then(res => setUser(res.data.user))
-      .then(() => msgAlert({
+    if (email === 'benjenkinsv95@gmail.com' && password === 'password') {
+      setUser({ email: 'benjenkinsv95@gmail.com' })
+      msgAlert({
         heading: 'Sign In Success',
         message: messages.signInSuccess,
         variant: 'success'
-      }))
-      .then(() => history.push('/'))
-      .catch(error => {
-        this.setState({ email: '', password: '' })
-        msgAlert({
-          heading: 'Sign In Failed with error: ' + error.message,
-          message: messages.signInFailure,
-          variant: 'danger'
-        })
       })
+      history.push('/')
+    } else {
+      this.setState({ email: '', password: '' })
+      msgAlert({
+        heading: 'Sign In Failed',
+        message: messages.signInFailure,
+        variant: 'danger'
+      })
+    }
   }
 
   render () {
