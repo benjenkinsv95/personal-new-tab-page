@@ -10,6 +10,8 @@ import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import NewTab from './components/NewTab/NewTab'
+import PersonalTab from './components/PersonalTab/PersonalTab'
+import WorkTab from './components/WorkTab/WorkTab'
 
 class App extends Component {
   constructor (props) {
@@ -59,6 +61,12 @@ class App extends Component {
         <main className="container-fluid">
           <AuthenticatedRoute user={user} exact path='/' render={() => (
             <NewTab/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/personal' render={() => (
+            <PersonalTab/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/work' render={() => (
+            <WorkTab/>
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} user={user} />
