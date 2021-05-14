@@ -18,8 +18,9 @@ const wasCheckedToday = id => {
 // A checkmark that forgets its value after a day
 // id - the id to keep track of this checkbox's value
 // label - the text to show in this checkbox
-const AutoCheck = ({ label, id = label }) => {
+const AutoCheck = ({ label, id = label, setValue }) => {
   const [checked, setChecked] = useState(wasCheckedToday(id))
+  setValue && setValue(wasCheckedToday(id))
 
   // toggle between checked and unchecked
   const toggleChecked = () => {
@@ -35,6 +36,8 @@ const AutoCheck = ({ label, id = label }) => {
 
     // reverse state
     setChecked(!checked)
+    // set external state as well
+    setValue && setValue(!checked)
   }
 
   return (
@@ -44,7 +47,7 @@ const AutoCheck = ({ label, id = label }) => {
       label={label}
       style={{ display: 'inline', marginRight: '0.5rem' }}
       checked={checked}
-      onClick={toggleChecked}
+      onChange={toggleChecked}
     />
   )
 }
