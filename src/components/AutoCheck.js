@@ -18,7 +18,7 @@ const wasCheckedToday = id => {
 // A checkmark that forgets its value after a day
 // id - the id to keep track of this checkbox's value
 // label - the text to show in this checkbox
-const AutoCheck = ({ label, id = label, setValue }) => {
+const AutoCheck = ({ label, id = label, setValue, icon = '' }) => {
   const [checked, setChecked] = useState(wasCheckedToday(id))
   setValue && setValue(wasCheckedToday(id))
 
@@ -44,7 +44,7 @@ const AutoCheck = ({ label, id = label, setValue }) => {
     <Form.Check
       size='lg'
       type="checkbox"
-      label={label}
+      label={<span>{icon}&nbsp;&nbsp;{label}</span>}
       style={{ display: 'inline', marginRight: '0.5rem' }}
       checked={checked}
       onChange={toggleChecked}

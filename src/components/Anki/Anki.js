@@ -12,8 +12,9 @@ const Anki = () => {
   return (
     <div>
       <Form.Group controlId="anki">
-        <AutoCheck label='Reviewed Anki' setValue={setShowAnki}/>
+        <AutoCheck icon='🧐' label='Reviewed Anki' setValue={setShowAnki}/>
       </Form.Group>
+      <hr/>
     </div>
   )
 }

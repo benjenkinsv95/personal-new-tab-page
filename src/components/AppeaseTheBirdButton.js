@@ -13,11 +13,12 @@ const AppeaseTheBirdButton = () => {
   return (
     <div>
       <Form.Group className='centered-check' controlId="appeased">
-        <AutoCheck label='Appeased' setValue={setAppeased}/>
+        <AutoCheck icon='🦉' label='Appeased' setValue={setAppeased}/>
         <a href='https://www.duolingo.com/learn' target='_blank' rel="noopener noreferrer">
-          <SolidButton primaryColor="rgb(119, 200, 0)">Appease The Bird</SolidButton>
+          <SolidButton primaryColor="rgb(119, 200, 0)">Appease The Owl</SolidButton>
         </a>
       </Form.Group>
+      <hr/>
     </div>
   )
 }
