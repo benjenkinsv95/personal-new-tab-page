@@ -5,3 +5,10 @@ $primary: #b53737;
   // position: unset;
   margin-top: 1.25rem;
 }
+
+.success-overlay{
+  background: rgba(0,255,84,0.35);
+  overflow: hidden;
+  height: 100%;
+  z-index: 2;
+}

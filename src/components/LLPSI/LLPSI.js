@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Form from 'react-bootstrap/Form'
 import AutoCheck from '../AutoCheck'
 
 const LLPSI = () => {
@@ -7,11 +6,9 @@ const LLPSI = () => {
   const [addVocab, setAddVocab] = useState(false)
 
   return (
-    <div>
-      <Form.Group controlId="anki">
-        {!readLLPSI && <div><AutoCheck icon='📖' label='Chapter Read From LLPSI' setValue={setReadLLPSI}/><hr/></div>}
-        {!addVocab && <AutoCheck icon='🖊' label=' Vocab Added for New Chapter' setValue={setAddVocab}/>}
-      </Form.Group>
+    <div style={{ order: readLLPSI || addVocab ? 3 : 0 }}>
+      <div className={readLLPSI ? 'success-overlay' : ''} style={{ order: readLLPSI ? 3 : 0, minWidth: '350px' }}><AutoCheck icon='📖' label='Chapter Read From LLPSI' setValue={setReadLLPSI}/><hr/></div>
+      <div className={addVocab ? 'success-overlay' : ''} style={{ order: addVocab ? 3 : 0, minWidth: '350px' }}> <AutoCheck icon='🖊' label=' Vocab Added for New Chapter' setValue={setAddVocab}/><hr/></div>
     </div>
   )
 }

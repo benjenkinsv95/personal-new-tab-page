@@ -4,13 +4,9 @@ import AutoCheck from '../AutoCheck'
 
 const Anki = () => {
   const [showAnki, setShowAnki] = useState(false)
-  // if showAnki, dont show
-  if (showAnki) {
-    return false
-  }
 
   return (
-    <div>
+    <div className={showAnki ? 'success-overlay' : ''} style={{ order: showAnki ? 4 : 0, minWidth: '350px' }}>
       <Form.Group controlId="anki">
         <AutoCheck icon='🧐' label='Reviewed Anki' setValue={setShowAnki}/>
       </Form.Group>

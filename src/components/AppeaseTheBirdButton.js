@@ -5,13 +5,9 @@ import AutoCheck from './AutoCheck'
 
 const AppeaseTheBirdButton = () => {
   const [appeased, setAppeased] = useState(false)
-  // if appeased, dont show
-  if (appeased) {
-    return false
-  }
 
   return (
-    <div>
+    <div className={appeased ? 'success-overlay' : ''} style={{ order: appeased ? 4 : 0, minWidth: '350px' }}>
       <Form.Group className='centered-check' controlId="appeased">
         <AutoCheck icon='🦉' label='Appeased' setValue={setAppeased}/>
         <a href='https://www.duolingo.com/learn' target='_blank' rel="noopener noreferrer">

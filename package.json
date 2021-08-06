@@ -23,7 +23,8 @@
     "resolve": "1.6.0",
     "styled-components": "^5.3.0",
     "url-loader": "0.6.2",
-    "uuid": "^7.0.3"
+    "uuid": "^7.0.3",
+    "whatwg-fetch": "^3.6.2"
   },
   "scripts": {
     "start": "node scripts/start.js",
@@ -101,7 +102,7 @@
     "file-loader": "1.1.5",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
-    "node-sass": "^4.9.3",
+    "node-sass": "^6.0.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "react-dev-utils": "^5.0.1",
