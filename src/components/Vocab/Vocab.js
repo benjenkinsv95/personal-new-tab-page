@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-
-/* eslint no-tabs: 0 */
+import useKeypress from '../../lib/use-keypress'
+/* eslint no-tabs: ["warn", { allowIndentationTabs: true }] */
 
 // TODO
 // [x] On first load, load vocab from `vocab_list.js`
@@ -21,12 +21,15 @@ const Vocab = () => {
   const [showEnglish, setShowEnglish] = useState(false)
   const [timeoutId, setTimeoutId] = useState(null)
 
-  useEffect(() => {
-    if (!showEnglish) {
-      const id = setTimeout(() => setShowEnglish(true), 5000)
-      setTimeoutId(id)
-    }
-  }, [showEnglish])
+  const startShowAnswerTimer = function () {
+    const id = setTimeout(() => setShowEnglish(true), 10000)
+
+    clearTimeout(timeoutId)
+    setTimeoutId(id)
+    console.log('setting timeoutId', id, timeoutId)
+  }
+
+  useEffect(startShowAnswerTimer, [vocab])
 
   const nextWord = () => {
     setVocab(vocabList.nextVocab())
@@ -45,23 +48,29 @@ const Vocab = () => {
 
   const showAnswer = () => {
     setShowEnglish(true)
-    clearTimeout(timeoutId)
   }
 
+  useKeypress('1', handleHard)
+  useKeypress('2', handleEasy)
+  useKeypress('3', showAnswer)
+  useKeypress(' ', showAnswer)
+
+  const nonBreakingSpace = '\u00a0'
   return (
     <div className='text-center'>
-      <h2 className='display-3'>
-        {vocab.latin} ({vocab.difficulty})
-      </h2>
-      {showEnglish && <h3>{vocab.english}</h3>}
-      <button className='btn btn-success' onClick={handleEasy}>
-				Easy
+      <h2 className='display-3'>{vocab.latin}</h2>
+      <h5>
+        {vocab.hint && vocab.hint} ({vocab.difficulty})
+      </h5>
+      <h3>{showEnglish ? vocab.english : nonBreakingSpace}</h3>
+      <button className='btn btn-danger' onClick={handleHard}>
+        Hard
       </button>
-      <button className='btn btn-danger mx-2' onClick={handleHard}>
-				Hard
+      <button className='btn btn-success mx-2' onClick={handleEasy}>
+        Easy
       </button>
       <button className='btn btn-secondary' onClick={showAnswer}>
-				Show Answer
+        Show Answer
       </button>
     </div>
   )

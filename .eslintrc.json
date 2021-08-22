@@ -27,7 +27,7 @@
       "error",
       "single"
     ],
-    "indent": ["error", 2],
+    "indent": [0],
     "react/prop-types": [0]
   }
 }
